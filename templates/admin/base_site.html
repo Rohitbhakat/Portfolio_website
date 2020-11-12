@@ -1,0 +1,65 @@
+
+
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block title %}Engineers Technologies | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}
+{% for fav in headings %}
+<link rel="icon" href="{{fav.favicon.url}}">
+{% endfor %}
+	
+    <style type='text/css'>
+        #header{
+        height: 50px;
+        background:#369;
+        color:#fff;
+
+
+        }
+        #brandings{
+            color:seashell;
+
+        }
+        #a:link,
+        a:visited{
+            color:#369;
+        }
+        div.breadcrumbs {
+            background:#fff;
+            color:#37a;
+
+        }
+        div.breadcrumbs a {
+            
+            color:#369;
+
+        }
+        .module h2, .module caption, .inline-group h2{
+            background:#38b;
+        }
+        .button, input[type=submit], input[type=button], .submit-row input, a.button{
+            background:#369;
+            color:snow;
+        }
+    </style>
+{% endblock %}
+{% block branding %}
+<h1 id="site-name" style="margin-top:0px;">
+    {%for log in heading%}
+    {%if log.Logo_img_display%}
+    <a href="{% url 'index' %}">
+        
+        <img class ="logo-image" src="{{log.logo.url}}" height="20px" />
+        
+    </a>
+    {%else%}
+    <a href="{% url 'index' %}" style="color:#fff">{{log.logo_name_display}} </a>
+    {%endif%}
+        {% endfor %}
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

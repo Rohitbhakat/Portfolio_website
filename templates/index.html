@@ -1,0 +1,828 @@
+{% load static %}
+{% load filter_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- SEO Meta Tags -->
+    {%if seo_bool %}
+    {%for foot in seo %}
+    <meta name="description" content="{{foot.meta_desc}}">
+    
+    <meta name="keywords" content="{{foot.meta_keywords}}">
+    {%endfor%}
+    {%endif%}
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site" content="" /> <!-- website link -->
+	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta property="og:type" content="article" />
+
+    <title>Engineers Technology</title>
+    <link rel="stylesheet" href="{% static 'fontawesome-5.5/css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'slick/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'magnific-popup/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/tooplate-infinite-loop.css' %}" />
+<!--
+Tooplate 2117 Infinite Loop
+https://www.tooplate.com/view/2117-infinite-loop
+-->
+<style>
+  .video-player{
+      width:60%;
+      max-height: 60%;
+  }
+  .logo-image {
+    width: 7.4375rem;
+  height: 2rem;
+  }
+  @media (min-width: 768px) {
+    .logo-image {
+      width: 11.375rem;
+    height: 3.7rem;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .logo-image {
+      width: 11.375rem;
+		height: 3.7rem;
+    }}
+
+
+</style>
+<style>
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #369; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #37A;; 
+  }
+  </style>
+<style>
+
+  hr.rounded {
+    border-top: 1px solid #37A;
+    border-radius: 5px;
+    width:70%;
+    }
+</style>
+<!-- <script src="{% static 'assets/owlcarousel/owl.carousel.js' %}"></script>
+<link rel="stylesheet" href="{% static 'assets/owlcarousel/assets/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/owlcarousel/assets/owl.theme.default.min.css' %}"> -->
+
+  </head>
+  <body>    
+    <!-- Hero section -->
+    {% for item in banners%}
+    <section id="infinite" class="text-white tm-font-big tm-parallax" style = "background-image: url({{item.img.url}})">
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">              
+        <div class="container">   
+          <div class="tm-next">
+            {%for log in heading%}
+            {%if log.Logo_img_display%}
+              <a href="{% url 'index' %}" class="navbar-brand"><img class ="logo-image" src="{{log.logo.url}}" alt="alternative"></a>
+              {%else%}
+              <a href="{% url 'index' %}" class="navbar-brand">{{log.logo_name_display}}</a>
+              {%endif%}
+              {%endfor%}
+          </div>             
+            
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars navbar-toggler-icon"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link tm-nav-link" href="#infinite">Home</a>
+              </li>
+              {%if service_bool%}
+              <li class="nav-item">
+                  <a class="nav-link tm-nav-link" href="#whatwedo">About Us</a>
+              </li>
+              {%endif%}
+              
+              <li class="nav-item">
+                <a class="nav-link tm-nav-link" href="#testimonials">Vision</a>
+              </li>
+              {%if prod_bool%}
+              <li class="nav-item">
+                  <a class="nav-link tm-nav-link" href="#gallery">Products</a>
+              </li>
+              {%endif%}
+              <li class="nav-item">
+                <a class="nav-link tm-nav-link" href="#videos">Videos</a>
+            </li>
+              <li class="nav-item">
+                  <a class="nav-link tm-nav-link" href="#contact">Contact</a>
+              </li>   
+                               
+            </ul>
+          </div>        
+        </div>
+      </nav>
+      
+      <div class="text-center tm-hero-text-container">
+        
+        <div class="tm-hero-text-container-inner">
+            <h2 class="tm-hero-title">{{item.head}}</h2>
+            <p class="tm-hero-subtitle">
+             {{item.subhead}}
+            </p>
+        </div>    
+          
+      </div>
+      
+      <div class="tm-next tm-intro-next">
+        {% if item.button_bool%}
+        <a href="#contact" class="text-center tm-down-arrow-link">
+          <i class="fas fa-2x fas fa-wrench tm-down-arrow"></i>
+        </a>
+        {% endif %}
+      </div>
+          
+    </section>
+    {%endfor %}
+   
+    <section id="whatwedo" class="tm-section-pad-top">
+      
+      <div class="container">
+
+            <div class="row tm-content-box"><!-- first row -->
+                <div class="col-lg-12 col-xl-12">
+                  {% if about_bool %}
+                  {% for item in about %}
+                  
+                    <div class="tm-intro-text-container">
+                        <h2 class="tm-text-primary mb-4 tm-section-title">About Us</h2>
+                        <p class="mb-4 tm-intro-text">
+                          {{item.para1}} .</p>
+                          <div id="about-collaps" style="display: none;">
+                          <p class="mb-4 tm-intro-text">
+                            {{item.para2}} .</p>
+                            </div>
+                    </div>
+                    <div class="tm-continue">
+                      <a href="#about-collaps" class="tm-intro-text tm-btn-primary read-more-btn">Read More</a>
+                  </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div><!-- first row -->
+            
+            <div class="row tm-content-box"><!-- second row -->
+              {% if service_bool %}
+              {% for item in services %}
+        		<div class="col-lg-1">
+                    <i class="far fa-3x fa-chart-bar text-center tm-icon"></i>
+                </div>
+                <div class="col-lg-5">
+                    <div class="tm-intro-text-container">
+                        <h2 class="tm-text-primary mb-4">{{item.title}}</h2>
+                        <p class="mb-4 tm-intro-text">
+                          {{item.content}}</p>
+                          <div id="service-collaps{{forloop.counter}}" style="display: none;">
+                            <p class="mb-4 tm-intro-text">
+                              {{item.read_more}}</p>
+                          </div>
+                    </div>
+                    {% if item.read_more_btn %}
+                    <div class="tm-continue">
+                      <a href="#service-collaps{{forloop.counter}}" class="tm-intro-text tm-btn-primary read-more-btn">Read More</a>
+                  </div>
+                  {% endif %}
+                </div>
+                {%if forloop.last%}
+              </div>
+
+                {% elif forloop.counter|divisibleby:2 %}
+              </div>
+                <div class="row tm-content-box">
+              
+                 {%endif%}
+            {% endfor %}
+            {%endif%}
+                
+
+        </div>
+      
+    </section>
+   {%if vision_bool %}
+    {% for item in vision %}
+    <section id="testimonials" class="tm-section-pad-top tm-parallax-2" >      
+      <div class="container tm-testimonials-content">
+        <div class="row">
+          <div class="col-lg-12 tm-content-box">
+            <h2 class="text-white text-center mb-4 tm-section-title">Vision & Mission</h2>
+            <p class="mx-auto tm-section-desc text-center">
+              <marquee scrollmount="1"><h2 style="color:#FFF"> {{item.scroll_text}}</h2></marquee>
+
+              </p><br>
+              <!-- <h2 style="color:#fff;" align="center"> {{item.vision_head}} </h2> -->
+              <p class="p-large" align="center" style="padding-left:15px; padding-right:15px;" >{{item.vision_subhead}}</p>
+           
+          </div>
+        </div>
+      </div>
+      <div class="tm-bg-overlay"></div>
+    </section>
+    {% endfor %}
+    {% endif %}
+    
+    {%if prod_bool%}
+    <section id="gallery" class="tm-section-pad-top">
+      <div class="container tm-container-gallery">
+        <div class="row">
+          <div class="text-center col-12">
+              <h2 class="tm-text-primary tm-section-title mb-4">Our Products</h2>
+              {% for item in heading%}
+              <p class="mx-auto tm-section-desc">
+                {{item.prod_head}}
+              </p>
+              {% endfor %}
+          </div>            
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mx-auto tm-gallery-container">
+                  
+                    <div class="grid tm-gallery">
+                      {%for prod in products %}
+                      <a class="popup-with-move-anim" href="#details-lightbox-{{forloop.counter}}">
+                        <figure class="effect-honey tm-gallery-item">
+                          <img src="{{prod.img.url}}" alt="Image 1" class="img-fluid">
+                          <figcaption>
+                            <h2><i> <span>{{prod.name}}</span></i></h2>
+                          </figcaption>
+                        </figure>
+                      </a>
+                      {%endfor%}
+                      
+                    </div>
+                   
+                </div>                
+            </div>        
+          </div>
+      </div>
+    </section>
+    {%endif%}
+    <!-- popup code -->
+    {%for prod in products%}
+    <div class="mfp-content" style="display: none;">
+      <div id="details-lightbox-{{forloop.counter}}" class="lightbox-basic zoom-anim-dialog">
+        <div class="container">
+          <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+            <div class="col-lg-8">
+              <div class="image-container">
+                <img class="img-fluid" src="{{prod.detail_img.url}}" alt="alternative">
+              </div> <!-- end of image-container -->
+            </div> <!-- end of col -->
+            <div class="col-lg-4">
+              <h3 style="color:#369;">{{prod.name}}</h3>
+              <hr>
+              <!-- <h5>Core feature</h5> -->
+              <p>{% autoescape off%}{{prod.specification}}{% endautoescape %}</p><br>
+              {%if prod.Price_display%}
+              <p style="color:#369;"><b>Range :</b> <i class="fas fa-rupee-sign"></i> {{prod.min_price}} - <i class="fas fa-rupee-sign"></i> {{prod.max_price}}</p><br>
+              {%endif%}
+              <a class="tm-intro-text tm-btn-primary" href="{% url 'index' %}">BACK</a>
+            </div> <!-- end of col -->
+          </div> <!-- end of row -->
+        </div> <!-- end of container -->
+      </div>
+    </div>
+    {%endfor%}
+    <!-- popup code ends-->
+
+    <!--videos-->
+
+    <section id="videos" class="tm-section-pad-top">
+      
+      <div class="container tm-container-gallery">
+        <div style="background-color: #369;"><hr class="rounded" style="margin-top: 0px;margin-bottom: 160px;"> </div>
+        <div class="row">
+          <div class="text-center col-12">
+              <h2 class="tm-text-primary tm-section-title mb-4">Our Videos</h2>
+              {% for item in heading%}
+              <p class="mx-auto tm-section-desc">
+                {{item.prod_head}}
+              </p>
+              {% endfor %}
+          </div>            
+        </div>
+        <div class="row" >
+            <div class="col-12">
+                <div class="mx-auto tm-gallery-container">
+                  
+                    <div class="grid tm-gallery">
+                      
+                      
+                        {%for vid in video %}
+                        <a class=" popup-youtube-test" popup-desc="videodesc{{forloop.counter}}" href="#details-lightbox-{{forloop.counter}}">
+                          <input type="hidden" class="video-source" value="{{vid.videofile.url}}"/>
+                          <figure class="effect-honey tm-gallery-item">
+                            <img src="{{vid.video_thumbnail.url}}" alt="Image 1" class="img-fluid">
+                            <figcaption>
+                              <!-- <h2><i> <span>{{prod.name}}</span></i></h2> -->
+                            </figcaption>
+                          </figure>
+                        </a>
+                        
+                        {%endfor%}
+                    
+                    
+                      
+                    </div>
+                   
+                </div>                
+            </div>        
+          </div>
+      </div>
+    </section>
+
+    
+    <div class="mfp-content"  style="display: none;">
+      <div id="test-popup" class="lightbox-basic zoom-anim-dialog">
+        <div class="container">
+          <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button" style="color:#007bff;font-size: 50px;">×</button>
+            <div align="center">
+              
+              <video id="video-popup" class="video-player" controls>
+                    <source class="current-video" src="" type="video/mp4">
+              </video>
+              <div class="col-lg-7" id="video-popup-desc">
+                
+              </div>
+              </div>
+          </div>
+          </div> <!-- end of row -->
+        </div> <!-- end of container -->
+      </div>
+     {%for vid in video%}
+      <div  id="videodesc{{forloop.counter}}" style="display: none;">
+        <p>{{vid.video_description}}</p>
+      </div>
+      {%endfor%}
+  
+
+    <!-- Contact -->
+    {% for item in heading %}
+    <section id="contact" class="tm-section-pad-top tm-parallax-2" style="background-image: url({{item.contact_parallax_img.url}})">
+    
+      <div class="container tm-container-contact">
+        
+        <div class="row">
+            
+            <div class="text-center col-12">
+                <h2 class="tm-section-title mb-4">Contact Us</h2>
+                
+                <p class="mb-5">
+                  {{item.contact_head}}
+                </p><br>
+               
+            </div>
+            
+            <div class="col-sm-12 col-md-6">
+              <form action="" id= "contact-form" method="post">
+                <input id="name" name="name" type="text" placeholder="Your Name" class="tm-input" required />
+                <input id="email" name="email" type="email" placeholder="Your Email" class="tm-input" required />
+                <input id="number" name="number" type="text" placeholder="Your Number" class="tm-input" required />
+                <textarea id="message" name="message" rows="8" placeholder="Message" class="tm-input" required></textarea>
+                <button type="submit" class="btn tm-btn-submit">Submit</button>
+              </form>
+            </div>
+            
+            <div class="col-sm-12 col-md-6">
+
+              <div class="contact-item">
+                <p>{% autoescape off%} {{item.address}} {% endautoescape %}</p>
+                                
+                </div>
+
+                <div class="contact-item">
+                  <a rel="nofollow" href="https://api.whatsapp.com/send?phone={{item.phn_number}}"target="_blank" class="item-link">
+                      <i class="fab fa-2x fa-whatsapp mr-4"></i>
+                      <span class="mb-0">Whatsapp</span>
+                  </a>              
+                </div>
+                
+                <div class="contact-item">
+                  <a rel="nofollow" href="mailto:{{item.my_email}}" class="item-link">
+                      <i class="far fa-2x fa-envelope mr-4"></i>
+                      <span class="mb-0">{{item.my_email}}</span>
+                  </a>              
+                </div>
+                
+                <div class="contact-item">
+                  <a rel="nofollow" href="https://www.google.com/maps" class="item-link">
+                      <i class="fab fa-2x fa-facebook-f mr-4"></i>
+                      <span class="mb-0">Facebook</span>
+                  </a>              
+                </div>
+                
+                <div class="contact-item">
+                  <a rel="nofollow" href="tel:{{item.phn_number}}" class="item-link">
+                      <i class="fas fa-2x fa-phone-square mr-4"></i>
+                      <span class="mb-0">{{item.phn_number}}</span>
+                  </a>              
+                </div>
+                
+                <div class="contact-item">&nbsp;</div>
+            
+            </div>
+           
+            
+            <!-- <div class="col-sm-12 col-md-6">
+
+              <div class="contact-item">
+              <p>Plot No- 1521/31, Near Toyota Showroom<br>Daultabad Road,<br>Gurgaon-122001</p>
+                              
+              </div>
+
+            </div> -->
+            
+        </div><!-- row ending -->
+        
+      </div>
+
+      	<footer class="text-center small tm-footer">
+          <p class="mb-0">
+          Copyright &copy; 2020 Engineers Technologies 
+          
+          . <a rel="nofollow" href="" title="">Designed by Kusanagi designs</a></p>
+        </footer>
+
+    </section>
+    {% endfor %}
+    
+    <script src="{% static 'js/jquery-1.9.1.min.js' %}"></script>     
+    <script src="{% static 'slick/slick.min.js' %}"></script>
+    <script src="{% static 'magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/easing.min.js' %}"></script>
+    <script src="{% static 'js/jquery.singlePageNav.min.js' %}"></script>     
+    <script src="{% static 'js/bootstrap.min.js' %}"></script> 
+    <script>
+
+      function getOffSet(){
+        var _offset = 450;
+        var windowHeight = window.innerHeight;
+
+        if(windowHeight > 500) {
+          _offset = 400;
+        } 
+        if(windowHeight > 680) {
+          _offset = 300
+        }
+        if(windowHeight > 830) {
+          _offset = 210;
+        }
+
+        return _offset;
+      }
+
+      function setParallaxPosition($doc, multiplier, $object){
+        var offset = getOffSet();
+        var from_top = $doc.scrollTop(),
+          bg_css = 'center ' +(multiplier * from_top - offset) + 'px';
+        $object.css({"background-position" : bg_css });
+      }
+
+      // Parallax function
+      // Adapted based on https://codepen.io/roborich/pen/wpAsm        
+      var background_image_parallax = function($object, multiplier, forceSet){
+        multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
+        multiplier = 1 - multiplier;
+        var $doc = $(document);
+        // $object.css({"background-attatchment" : "fixed"});
+
+        if(forceSet) {
+          setParallaxPosition($doc, multiplier, $object);
+        } else {
+          $(window).scroll(function(){          
+            setParallaxPosition($doc, multiplier, $object);
+          });
+        }
+      };
+
+      var background_image_parallax_2 = function($object, multiplier){
+        multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
+        multiplier = 1 - multiplier;
+        var $doc = $(document);
+        $object.css({"background-attachment" : "fixed"});
+        
+        $(window).scroll(function(){
+          if($(window).width() > 768) {
+            var firstTop = $object.offset().top,
+                pos = $(window).scrollTop(),
+                yPos = Math.round((multiplier * (firstTop - pos)) - 186);              
+
+            var bg_css = 'center ' + yPos + 'px';
+
+            $object.css({"background-position" : bg_css });
+          } else {
+            $object.css({"background-position" : "center" });
+          }
+        });
+      };
+      
+      $(function(){
+        // Hero Section - Background Parallax
+        background_image_parallax($(".tm-parallax"), 0.30, false);
+        background_image_parallax_2($("#contact"), 0.80);   
+        background_image_parallax_2($("#testimonials"), 0.80);   
+        
+        // Handle window resize
+        window.addEventListener('resize', function(){
+          background_image_parallax($(".tm-parallax"), 0.30, true);
+        }, true);
+
+        // Detect window scroll and update navbar
+        $(window).scroll(function(e){          
+          if($(document).scrollTop() > 120) {
+            $('.tm-navbar').addClass("scroll");
+          } else {
+            $('.tm-navbar').removeClass("scroll");
+          }
+        });
+        
+        // Close mobile menu after click 
+        $('#tmNav a').on('click', function(){
+          $('.navbar-collapse').removeClass('show'); 
+        })
+
+        // Scroll to corresponding section with animation
+        $('#tmNav').singlePageNav({
+          'easing': 'easeInOutExpo',
+          'speed': 600
+        });        
+        
+        // Add smooth scrolling to all links
+        // https://www.w3schools.com/howto/howto_css_smooth_scroll.asp
+        $("a").on('click', function(event) {
+          if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+
+            $('html, body').animate({
+              scrollTop: $(hash).offset().top
+            }, 600, 'easeInOutExpo', function(){
+              window.location.hash = hash;
+            });
+          } // End if
+        });
+
+        // Pop up
+        /*$('.tm-gallery').magnificPopup({
+          delegate: 'a',
+          items:[
+          {
+            src: $('<div>Dynamically created element</div>'),
+            type: 'inline'
+          }
+          ],
+          
+          type: 'image',
+          gallery: { enabled: true }
+        });*/
+
+        $('.tm-testimonials-carousel').slick({
+          dots: true,
+          prevArrow: false,
+          nextArrow: false,
+          infinite: false,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          responsive: [
+            {
+              breakpoint: 992,
+              settings: {
+                slidesToShow: 2
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2
+              }
+            }, 
+            {
+              breakpoint: 480,
+              settings: {
+                  slidesToShow: 1
+              }                 
+            }
+          ]
+        });
+
+        // Gallery
+        $('.tm-gallery').slick({
+          dots: true,
+          infinite: false,
+          slidesToShow: 5,
+          slidesToScroll: 2,
+          responsive: [
+          {
+            breakpoint: 1199,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 991,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 767,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+        });
+      });
+    </script>
+
+    <script>
+      $(document).ready(function(){
+          $('.read-more-btn').click(function(){
+              var collapseId = $(this).attr('href');
+              var readmoreSelector = $(this);
+              $(collapseId).toggle(function(){
+                      if($(this).css('display')==='none')
+                      {
+                          readmoreSelector.text('Read More');
+                      }
+                      else{
+                          readmoreSelector.text('Read Less');
+                      }
+              });
+          });
+
+          
+
+
+     $('form').submit(function(event) {
+			
+			
+			var name = $('input[name=name]').val();
+			var number = $('input[name=number]').val();
+			var email = $('input[name=email]').val();
+			var message = $('#message').val();
+			var host_url= window.location.href;
+		
+			$.ajax({
+				url:"/customer_info",
+				method:"POST",
+				data:{
+					name:name,
+					number:number,
+					email:email,
+					message:message,
+					url:host_url,
+					
+					
+				},
+				success:function(data){
+          
+          alert(data);
+          $('#contact-form').trigger('reset');
+						
+						
+			
+        }
+        
+      });	
+      event.preventDefault();		
+    });	
+    
+    /*$(document).on('change', '#contact-form',function(){
+			console.log('hi testing')
+			contact_info();
+    });*/
+    /*$('.owl-carousel').owlCarousel({
+      items:1,
+      merge:true,
+      loop:true,
+      margin:10,
+      video:true,
+      lazyLoad:true,
+      center:true,
+      responsive:{
+          480:{
+              items:2
+          },
+          600:{
+              items:4
+          }
+      }
+  })*/
+
+  $('.popup-with-move-anim').magnificPopup({
+    type: 'inline',
+    fixedContentPos: false, /* keep it false to avoid html tag shift with margin-right: 17px */
+    fixedBgPos: true,
+    overflowY: 'auto',
+    closeBtnInside: true,
+    preloader: false,
+    midClick: true,
+    removalDelay: 300,
+    mainClass: 'my-mfp-slide-bottom'
+  });
+      });
+
+
+      $(document).on('click','.popup-youtube-test', function(){
+        var source = $(this).parent().find('.video-source').val();
+        
+       /* $('.current-video').attr('src', source);
+        $('.current-video')[0].load();*/
+        var videoElement = $("#video-popup")[0];
+        videoElement.src = source;
+        videoElement.load();
+        var video_attr = $(this).attr('popup-desc');
+        var video_desc = $('#'+video_attr).html();
+        $('#video-popup-desc').html(video_desc);
+        console.log(video_desc)
+    });
+	
+	
+$('.popup-youtube-test').magnificPopup({
+        items: {
+                    src: '#test-popup',
+                    type: 'inline'
+                }
+        });	
+
+        $(document).ready(function(){
+
+            var videoElement = $("#video-popup")[0];
+            $('#video-close').on('click', function(){
+    
+                //var videoElement = $("#video-popup")[0]
+                //console.log(videoElement.play);
+                if(videoElement.play)
+                {
+                   //console.log('if'); 
+                   videoElement.pause();
+                   //console.log(videoElement.currentTime);
+                   videoElement.currentTime=0;          
+                }
+               
+            });
+    
+            $('body').on('click', function(){
+    
+                //console.log('body'+videoElement.play);
+                if(videoElement.play)
+                {
+                   //console.log('if'); 
+                   videoElement.pause();
+                   //console.log(videoElement.currentTime);          
+                }
+    
+            })
+    
+            
+            
+        }); 
+  </script>
+  </body>
+</html>
