@@ -36,7 +36,7 @@ class Product(models.Model):
     detail_img=  fields.ImageField(upload_to='pics')
 
 class Upload_video(models.Model):
-    video=models.CharField(max_length = 100)
+    video_name=models.CharField(max_length = 100)
     video_thumbnail=fields.ImageField(upload_to = 'pics', dependencies=[
         FileDependency(attname='video_thumbnail',processor=ImageProcessor(
             format='JPEG', scale={'max_width':500,'max_height':500})),
@@ -71,6 +71,7 @@ class Head_footer(models.Model):
         
     ])
     contact_parallax_img = fields.ImageField(upload_to='pics')
+    # gif_404 = models.FileField(upload_to='pics', null=True)
 
 class Vision_Mission(models.Model):
     scroll_text=models.CharField(max_length = 100, blank=True)

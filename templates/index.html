@@ -117,7 +117,7 @@ https://www.tooplate.com/view/2117-infinite-loop
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a class="nav-link tm-nav-link" href="#infinite">Home</a>
+                  <a class="nav-link tm-nav-link" href="{%url 'index'%}">Home</a>
               </li>
               {%if service_bool%}
               <li class="nav-item">
@@ -179,7 +179,7 @@ https://www.tooplate.com/view/2117-infinite-loop
                     <div class="tm-intro-text-container">
                         <h2 class="tm-text-primary mb-4 tm-section-title">About Us</h2>
                         <p class="mb-4 tm-intro-text">
-                          {{item.para1}} .</p>
+                          {{item.para1}} </p>
                           <div id="about-collaps" style="display: none;">
                           <p class="mb-4 tm-intro-text">
                             {{item.para2}} .</p>
@@ -198,7 +198,7 @@ https://www.tooplate.com/view/2117-infinite-loop
               {% if service_bool %}
               {% for item in services %}
         		<div class="col-lg-1">
-                    <i class="far fa-3x fa-chart-bar text-center tm-icon"></i>
+                    <!-- <i class="far fa-3x fa-chart-bar text-center tm-icon"></i> -->
                 </div>
                 <div class="col-lg-5">
                     <div class="tm-intro-text-container">
@@ -330,7 +330,7 @@ https://www.tooplate.com/view/2117-infinite-loop
               <h2 class="tm-text-primary tm-section-title mb-4">Our Videos</h2>
               {% for item in heading%}
               <p class="mx-auto tm-section-desc">
-                {{item.prod_head}}
+                {{item.video_head}}
               </p>
               {% endfor %}
           </div>            
@@ -348,7 +348,7 @@ https://www.tooplate.com/view/2117-infinite-loop
                           <figure class="effect-honey tm-gallery-item">
                             <img src="{{vid.video_thumbnail.url}}" alt="Image 1" class="img-fluid">
                             <figcaption>
-                              <!-- <h2><i> <span>{{prod.name}}</span></i></h2> -->
+                              <h2><i> <span>{{vid.video_name}}</span></i></h2>
                             </figcaption>
                           </figure>
                         </a>

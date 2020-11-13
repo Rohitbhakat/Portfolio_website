@@ -115,6 +115,14 @@ Colors:
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 }
+
+.four_zero_four_bg{
+ 
+	background-image: url(../img/drib.gif);
+	/*background-image: url("{% static 'img/drib.gif' %}");*/
+	   height: 400px;
+	   background-position: center;
+	}
 /* end of form success and error message animation - Animate.css */
 
 /* Fade-move Animation For Lightbox - Magnific Popup */

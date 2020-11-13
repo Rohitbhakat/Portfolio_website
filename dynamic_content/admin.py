@@ -10,7 +10,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display=('name','specification')
 
 class Upload_videoAdmin(admin.ModelAdmin):
-    list_display=('Display_onpage','videofile') 
+    list_display=('video_name','Display_onpage','videofile') 
 
 class ServiceAdmin(admin.ModelAdmin):
     list_display=('title','content')
