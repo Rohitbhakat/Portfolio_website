@@ -45,7 +45,7 @@ class Upload_video(models.Model):
     video_thumbnail = fields.ImageField(upload_to='pics')
     videofile= models.FileField(upload_to='videos', null=True)
     video_description= models.TextField()
-    Display_onpage = models.BooleanField(default=False)
+    # Display_onpage = models.BooleanField(default=False)
 
 class Service(models.Model):
     title=models.CharField(max_length = 100)
@@ -71,6 +71,7 @@ class Head_footer(models.Model):
         
     ])
     contact_parallax_img = fields.ImageField(upload_to='pics')
+    facebook_link = models.CharField(max_length = 100, blank=True) 
     # gif_404 = models.FileField(upload_to='pics', null=True)
 
 class Vision_Mission(models.Model):
@@ -103,6 +104,7 @@ class about_us(models.Model):
     Name=models.CharField(max_length = 100)
     para1=models.TextField(blank=True)
     para2=models.TextField(blank=True)
+    read_more_btn = models.BooleanField(default=False)
     # para3=models.TextField(blank=True)
     # features=models.CharField(max_length = 200, blank=True)    
 

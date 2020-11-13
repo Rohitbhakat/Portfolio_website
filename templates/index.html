@@ -185,9 +185,11 @@ https://www.tooplate.com/view/2117-infinite-loop
                             {{item.para2}} .</p>
                             </div>
                     </div>
+                    {%if item.read_more_btn%}
                     <div class="tm-continue">
                       <a href="#about-collaps" class="tm-intro-text tm-btn-primary read-more-btn">Read More</a>
                   </div>
+                  {%endif%}
                     {% endfor %}
                     {% endif %}
                 </div>
@@ -310,7 +312,7 @@ https://www.tooplate.com/view/2117-infinite-loop
               {%if prod.Price_display%}
               <p style="color:#369;"><b>Range :</b> <i class="fas fa-rupee-sign"></i> {{prod.min_price}} - <i class="fas fa-rupee-sign"></i> {{prod.max_price}}</p><br>
               {%endif%}
-              <a class="tm-intro-text tm-btn-primary" href="{% url 'index' %}">BACK</a>
+              <a class="tm-intro-text tm-btn-primary mfp-close-test"  href="#">BACK</a>
             </div> <!-- end of col -->
           </div> <!-- end of row -->
         </div> <!-- end of container -->
@@ -440,7 +442,7 @@ https://www.tooplate.com/view/2117-infinite-loop
                 </div>
                 
                 <div class="contact-item">
-                  <a rel="nofollow" href="https://www.google.com/maps" class="item-link">
+                  <a rel="nofollow" href="{{item.facebook_link}}" class="item-link">
                       <i class="fab fa-2x fa-facebook-f mr-4"></i>
                       <span class="mb-0">Facebook</span>
                   </a>              
@@ -643,7 +645,9 @@ https://www.tooplate.com/view/2117-infinite-loop
         // Gallery
         $('.tm-gallery').slick({
           dots: true,
-          infinite: false,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 2000,
           slidesToShow: 5,
           slidesToScroll: 2,
           responsive: [
@@ -682,6 +686,13 @@ https://www.tooplate.com/view/2117-infinite-loop
 
     <script>
       $(document).ready(function(){
+
+        $('.mfp-close-test').on('click',function(event){
+          event.preventDefault();
+          //console.log('triggering click');
+          $.magnificPopup.close();
+            
+          });
           $('.read-more-btn').click(function(){
               var collapseId = $(this).attr('href');
               var readmoreSelector = $(this);
@@ -780,7 +791,7 @@ https://www.tooplate.com/view/2117-infinite-loop
         var video_attr = $(this).attr('popup-desc');
         var video_desc = $('#'+video_attr).html();
         $('#video-popup-desc').html(video_desc);
-        console.log(video_desc)
+        //console.log(video_desc)
     });
 	
 	

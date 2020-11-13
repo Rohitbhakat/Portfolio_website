@@ -2,6 +2,12 @@ from django.contrib import admin
 
 from dynamic_content.models import Customer_detail, Product, Upload_video, Service, Banner, about_us, Head_footer, Vision_Mission,Seo_Meta
 # Register your models here.
+
+from django.contrib import admin
+from django.contrib.auth.models import Group
+
+# admin.site.unregister(Group)
+
 class Customer_detailAdmin(admin.ModelAdmin):
     list_display=('id','name','number','email')
     list_per_page=5
@@ -10,7 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display=('name','specification')
 
 class Upload_videoAdmin(admin.ModelAdmin):
-    list_display=('video_name','Display_onpage','videofile') 
+    list_display=('video_name','videofile') 
 
 class ServiceAdmin(admin.ModelAdmin):
     list_display=('title','content')
