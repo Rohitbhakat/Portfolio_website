@@ -27,7 +27,7 @@ SECRET_KEY = '1%^$!=rwey6_w$p)=txsh964jsaoyu4mja)w$8ikx08@ifmbas'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['139.59.71.156']
 
 
 # Application definition
@@ -146,7 +146,12 @@ MEDIA_URL ='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-
+EMAIL_USE_TLS = True
+Email_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'bharatengineering789@gmail.com'
+EMAIL_HOST_PASSWORD = 'Bharat@123'
+EMAIL_PORT = 587
 
 try:
     from .local_settings import *
