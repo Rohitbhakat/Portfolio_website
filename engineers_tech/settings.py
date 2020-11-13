@@ -149,7 +149,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 try:
-    import .local_settings import *
+    from .local_settings import *
 
 except ImportError:
     pass
