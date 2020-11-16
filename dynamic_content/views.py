@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 from django.core.mail import  EmailMultiAlternatives
 from django.template.loader import render_to_string
+from smtplib import SMTPException
 from django.utils.html import strip_tags\
 # from django.shortcuts import render, redirect
 
@@ -95,7 +96,7 @@ def customer_info(request):
             print(message)
             
             return HttpResponse(message)
-        except Exception as e:
+        except SMTPException as e:
             print(e)
             message='Hi '+str(name)+', there is some issue please try again after some time'
             return HttpResponse(message)
