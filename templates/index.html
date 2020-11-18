@@ -50,13 +50,52 @@ https://www.tooplate.com/view/2117-infinite-loop
       width: 11.375rem;
     height: 3.7rem;
     }
+
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+    }
+    /* Zebra striping */
+    tr:nth-of-type(odd) { 
+      background: #eee; 
+    }
+    th { 
+      background: #333; 
+      color: white; 
+      font-weight: bold; 
+    }
+    td, th { 
+      padding: 6px; 
+      border: 1px solid #ccc; 
+      text-align: left; 
+    }
   }
+  
 
   @media (min-width: 992px) {
     .logo-image {
       width: 11.375rem;
 		height: 3.7rem;
-    }}
+    }
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+    }
+    /* Zebra striping */
+    tr:nth-of-type(odd) { 
+      background: #eee; 
+    }
+    th { 
+      background: #333; 
+      color: white; 
+      font-weight: bold; 
+    }
+    td, th { 
+      padding: 6px; 
+      border: 1px solid #ccc; 
+      text-align: left; 
+    }
+  }
 
 
 </style>
@@ -88,6 +127,30 @@ https://www.tooplate.com/view/2117-infinite-loop
     border-radius: 5px;
     width:70%;
     }
+</style>
+<style>
+  table { 
+    width: 100%; 
+    border-collapse: collapse; 
+  }
+  /* Zebra striping */
+  tr:nth-of-type(odd) { 
+    background: #eee; 
+  }
+  th { 
+    background: #333; 
+    color: white; 
+    font-weight: bold; 
+  }
+  td, th { 
+    padding: 6px; 
+    border: 1px solid #ccc; 
+    text-align: left; 
+    font-size:16px !important;
+    line-height:125% !important;
+  }
+
+ 
 </style>
 <!-- <script src="{% static 'assets/owlcarousel/owl.carousel.js' %}"></script>
 <link rel="stylesheet" href="{% static 'assets/owlcarousel/assets/owl.carousel.min.css' %}">
@@ -308,10 +371,14 @@ https://www.tooplate.com/view/2117-infinite-loop
               <h3 style="color:#369;">{{prod.name}}</h3>
               <hr>
               <!-- <h5>Core feature</h5> -->
-              <p>{% autoescape off%}{{prod.specification}}{% endautoescape %}</p><br>
-              {%if prod.Price_display%}
+              <div style="padding-top: 20px;">{% autoescape off%}{{prod.specification}}{% endautoescape %}
+                {%if prod.Price_display%}
               <p style="color:#369;"><b>Range :</b> <i class="fas fa-rupee-sign"></i> {{prod.min_price}} - <i class="fas fa-rupee-sign"></i> {{prod.max_price}}</p><br>
               {%endif%}
+              </div>
+              <!-- {%if prod.Price_display%}
+              <p style="color:#369;"><b>Range :</b> <i class="fas fa-rupee-sign"></i> {{prod.min_price}} - <i class="fas fa-rupee-sign"></i> {{prod.max_price}}</p><br>
+              {%endif%} -->
               <a class="tm-intro-text tm-btn-primary mfp-close-test"  href="#">BACK</a>
             </div> <!-- end of col -->
           </div> <!-- end of row -->

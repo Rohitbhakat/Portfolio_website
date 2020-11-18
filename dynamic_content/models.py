@@ -6,6 +6,7 @@ from datetime import datetime
 from smartfields import fields
 from smartfields.dependencies import FileDependency
 from smartfields.processors import ImageProcessor
+from ckeditor.fields import RichTextField
 # Create your models here.
 class Customer_detail(models.Model):
     name = models.CharField(max_length = 100)
@@ -27,7 +28,7 @@ class Product(models.Model):
     max_price = models.IntegerField()
     min_price = models.IntegerField()
     Price_display = models.BooleanField(default=False)
-    specification = models.TextField()    
+    specification = RichTextField(blank=True, null=True)   
     detail_img= fields.ImageField(upload_to = 'pics', dependencies=[
         FileDependency(attname='img=',processor=ImageProcessor(
             format='JPEG', scale={'max_width':500,'max_height':500})),

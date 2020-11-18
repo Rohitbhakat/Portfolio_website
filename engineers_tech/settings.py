@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'smartfields',
+    'ckeditor',
 ]
 
 SITE_ID = 1
